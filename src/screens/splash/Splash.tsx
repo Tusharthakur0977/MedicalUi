@@ -3,7 +3,7 @@
 import React, {useEffect, useRef} from 'react';
 import {Animated, Text, View, Image, Easing} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {RootStackParams} from '../typings/route';
+import {RootStackParams} from '../home/typings/route';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import IMAGES from '../../assets';
 import {styles} from './Styles';

@@ -3,7 +3,7 @@ import {Text, TextInput, TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import React, { useRef } from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {RootStackParams} from '../typings/route';
+import {RootStackParams} from '../home/typings/route';
 import {styles} from './Styles';
 
 type SplashProps = NativeStackScreenProps<RootStackParams>;

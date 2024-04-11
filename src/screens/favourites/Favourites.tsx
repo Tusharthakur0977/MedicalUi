@@ -4,7 +4,7 @@ import CustomIcon from '../../components/Icon/Icon';
 import IMAGES from '../../assets';
 import { useState } from 'react';
 import Modal from 'react-native-modal';
-import { RootStackParams } from '../typings/route';
+import { RootStackParams } from '../home/typings/route';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 
@@ -243,7 +243,7 @@ const Favourites: React.FC<SplashProps> = ({ navigation }) => {
               size={27}
             />
             <Text style={{ color: 'black', fontSize: 23, fontWeight: 'bold' }}>
-              Favourites
+              My Favourite Doctors
             </Text>
           </View>
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 15 }}>

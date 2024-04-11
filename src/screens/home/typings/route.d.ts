@@ -10,6 +10,7 @@ export type RootStackParams = {
   Home: undefined;
   Notifications: undefined;
   Favourites: undefined;
+  TopDoctors: undefined;
   splash: undefined;
   mainStack: NavigatorScreenParams<UserProcess>;
 };

@@ -3,7 +3,7 @@ import {
   createNativeStackNavigator,
 } from '@react-navigation/native-stack';
 import React from 'react';
-import { RootStackParams } from '../screens/typings/route';
+import { RootStackParams } from '../screens/home/typings/route';
 import Splash from '../screens/splash/Splash';
 import FirstPage from '../screens/firstPage/FirstPage';
 import SignIn from '../screens/login/SignIn';
@@ -16,6 +16,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import CustomIcon from '../components/Icon/Icon';
 import Notifications from '../screens/notifications/Notifications';
 import Favourites from '../screens/favourites/Favourites';
+import TopDoctors from '../screens/topDoctors/TopDoctors';
 
 
 const Tab = createBottomTabNavigator();
@@ -125,6 +126,11 @@ const Routing: React.FC<SplashProps> = () => {
       <Stack.Screen
         name="Favourites"
         component={Favourites}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="TopDoctors"
+        component={TopDoctors}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

@@ -6,7 +6,7 @@ import CustomIcon from '../../components/Icon/Icon'
 import { styles } from './Style'
 import Slick from 'react-native-slick'
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParams } from '../typings/route'
+import { RootStackParams } from './typings/route'
 
 type SplashProps = NativeStackScreenProps<RootStackParams>;
 
@@ -161,7 +161,7 @@ const Home: React.FC<SplashProps> = ({ navigation }) => {
         }}>
         <View style={styles.topDoctors}>
           <Text style={styles.topdocTitle}>Top Doctors</Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('TopDoctors')}>
             <Text style={styles.seeAll}>See All</Text>
           </TouchableOpacity>
         </View>

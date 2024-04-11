@@ -3,7 +3,7 @@ import {Image, Text, TouchableOpacity, View} from 'react-native';
 import React, {useState} from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {RootStackParams } from '../typings/route';
+import {RootStackParams } from '../home/typings/route';
 import IMAGES from '../../assets';
 import {styles} from './Styles';
 import CustomInput from '../../components/CustomInput/CustomInput';

@@ -19,6 +19,10 @@ const IMAGES = {
   appointSuccess: require('./download1.png'),
   newServiceAvail: require('./download2.png'),
   cardConnect: require('./download3.png'),
-  travis: require('./travis.png')
+  travis: require('./travis.png'),
+  jenny: require('./image.png'),
+  raul: require('./image1.png'),
+  elijah: require('./image2.png'),
+  randy: require('./image3.png')
 };
 export default IMAGES;
