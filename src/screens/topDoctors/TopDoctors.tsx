@@ -336,7 +336,7 @@ const TopDoctors: React.FC<SplashProps> = ({ navigation }) => {
           showsHorizontalScrollIndicator={false}
         />
       </View>
-      <View>
+      <View style={{flex: 1}}>
         <FlatList
           data={DATA}
           renderItem={({ item }) => (
@@ -370,7 +370,9 @@ const styles = StyleSheet.create({
   },
   container: {
     backgroundColor: '#f6f6f7',
-    paddingHorizontal: 20,
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    // backgroundColor: 'red',
   },
   itemContainer: {
     flexDirection: 'row',
