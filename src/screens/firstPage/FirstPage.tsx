@@ -13,7 +13,7 @@ const FirstPage: React.FC<SplashProps> = ({navigation}) => {
     <SafeAreaView style={styles.container}>
       <View style={styles.headerContainer}>
         <Image
-          source={require('/Kartik_Projects/React Native Project/MedicalUI/src/assets/Firstpage.png')}
+          source={require('../../assets/Firstpage.png')}
           style={styles.image}
         />
 
@@ -26,7 +26,7 @@ const FirstPage: React.FC<SplashProps> = ({navigation}) => {
         </TouchableOpacity>
         <TouchableOpacity style={[styles.socialButton, styles.googleButton]}>
           <Image
-            source={require('/Kartik_Projects/React Native Project/MedicalUI/src/assets/download-removebg-preview.png')} // Replace with the path to your multi-colored Google logo image
+            source={require('../../assets/download-removebg-preview.png')} // Replace with the path to your multi-colored Google logo image
             resizeMode="contain"
             style={styles.logo}
           />
