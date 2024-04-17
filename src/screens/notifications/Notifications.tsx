@@ -3,7 +3,7 @@ import React from 'react'
 import { Image } from 'react-native';
 import IMAGES from '../../assets';
 import CustomIcon from '../../components/Icon/Icon';
-import { RootStackParams } from '../home/typings/route';
+import { RootStackParams } from '../../typings/route';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 const data = [

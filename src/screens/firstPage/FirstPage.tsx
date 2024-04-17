@@ -2,7 +2,7 @@ import {Image, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {RootStackParams} from '../home/typings/route';
+import { RootStackParams } from '../../typings/route';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {styles} from './Styles';
 

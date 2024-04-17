@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import CustomInput from '../../components/CustomInput/CustomInput';
-import { RootStackParams } from '../home/typings/route';
+import { RootStackParams } from '../../typings/route';
 import { styles } from './Styles';
 import CustomIcon from '../../components/Icon/Icon';
 

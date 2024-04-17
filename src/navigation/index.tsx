@@ -3,7 +3,7 @@ import {
   createNativeStackNavigator,
 } from '@react-navigation/native-stack';
 import React from 'react';
-import { RootStackParams } from '../screens/home/typings/route';
+import { RootStackParams } from '../typings/route';
 import Splash from '../screens/splash/Splash';
 import FirstPage from '../screens/firstPage/FirstPage';
 import SignIn from '../screens/login/SignIn';
@@ -18,17 +18,30 @@ import Notifications from '../screens/notifications/Notifications';
 import Favourites from '../screens/favourites/Favourites';
 import TopDoctors from '../screens/topDoctors/TopDoctors';
 
-
 const Tab = createBottomTabNavigator();
 export const Tabbing = () => {
   return (
-    <Tab.Navigator screenOptions={{ headerShown: false, tabBarStyle: { backgroundColor: '#fff', borderTopWidth: 0, paddingHorizontal: 30, paddingBottom: 10 } }}>
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarStyle: {
+          backgroundColor: '#fff',
+          borderTopWidth: 0,
+          paddingHorizontal: 30,
+          paddingBottom: 10,
+        },
+      }}>
       <Tab.Screen
         name="Home"
         component={Home}
         options={{
           tabBarIcon: ({ focused }) => (
-            <CustomIcon name="home" color={focused ? '#286cfc' : 'grey'} size={30} type={'Foundation'} />
+            <CustomIcon
+              name="home"
+              color={focused ? '#286cfc' : 'grey'}
+              size={30}
+              type={'Foundation'}
+            />
           ),
         }}
       />
@@ -37,7 +50,12 @@ export const Tabbing = () => {
         component={SignIn}
         options={{
           tabBarIcon: ({ focused }) => (
-            <CustomIcon name="calendar" color={focused ? '#286cfc' : 'grey'} size={30} type={'AntIcons'} />
+            <CustomIcon
+              name="calendar"
+              color={focused ? '#286cfc' : 'grey'}
+              size={30}
+              type={'AntIcons'}
+            />
           ),
         }}
       />
@@ -46,7 +64,12 @@ export const Tabbing = () => {
         component={SignUp}
         options={{
           tabBarIcon: ({ focused }) => (
-            <CustomIcon name="file-text" color={focused ? '#286cfc' : 'grey'} size={30} type={'Feather'} />
+            <CustomIcon
+              name="file-text"
+              color={focused ? '#286cfc' : 'grey'}
+              size={30}
+              type={'Feather'}
+            />
           ),
         }}
       />
@@ -55,7 +78,12 @@ export const Tabbing = () => {
         component={FirstPage}
         options={{
           tabBarIcon: ({ focused }) => (
-            <CustomIcon name="file-text" color={focused ? '#286cfc' : 'grey'} size={30} type={'Feather'} />
+            <CustomIcon
+              name="file-text"
+              color={focused ? '#286cfc' : 'grey'}
+              size={30}
+              type={'Feather'}
+            />
           ),
         }}
       />
@@ -64,7 +92,13 @@ export const Tabbing = () => {
         component={Splash}
         options={{
           tabBarIcon: ({ focused }) => (
-            <CustomIcon style={{ fontFamily: '' }} name="user-o" color={focused ? '#286cfc' : 'grey'} size={25} type={'FontAwesome'} />
+            <CustomIcon
+              style={{ fontFamily: '' }}
+              name="user-o"
+              color={focused ? '#286cfc' : 'grey'}
+              size={25}
+              type={'FontAwesome'}
+            />
           ),
         }}
       />
@@ -130,6 +164,11 @@ const Routing: React.FC<SplashProps> = () => {
       />
       <Stack.Screen
         name="TopDoctors"
+        component={TopDoctors}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="UserDetails"
         component={TopDoctors}
         options={{ headerShown: false }}
       />

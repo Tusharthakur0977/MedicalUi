@@ -6,7 +6,8 @@ import CustomIcon from '../../components/Icon/Icon'
 import { styles } from './Style'
 import Slick from 'react-native-slick'
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParams } from './typings/route'
+import { RootStackParams } from '../../typings/route';
+import { NavigationContainer } from '@react-navigation/native';
 
 type SplashProps = NativeStackScreenProps<RootStackParams>;
 

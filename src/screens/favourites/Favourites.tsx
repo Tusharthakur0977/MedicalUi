@@ -4,211 +4,268 @@ import CustomIcon from '../../components/Icon/Icon';
 import IMAGES from '../../assets';
 import { useState } from 'react';
 import Modal from 'react-native-modal';
-import { RootStackParams } from '../home/typings/route';
+import { RootStackParams } from '../../typings/route';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-
 type DoctorItemProps = {
-    name: string;
-    hospital: string;
-    reviews: number;
-    rating: number;
-    speciality: string;
-    avatarUrl: any;
+  name: string;
+  hospital: string;
+  reviews: number;
+  rating: number;
+  speciality: string;
+  avatarUrl: any;
 };
 const DATA = [
-    {
-        id: '1',
-        name: 'Dr. Travis Westaby',
-        speciality: 'Cardiologist  |',
-        hospital: '  Alka Hospital',
-        reviews: 3576,
-        rating: 4.3,
-        avatarUrl: IMAGES.travis,
-    },
-    {
-        id: '2',
-        name: 'Dr. Nathaniel Valle',
-        speciality: 'Cardiologist  |',
-        hospital: '  B&B Hospital',
-        reviews: 3837,
-        rating: 4.6,
-        avatarUrl: IMAGES.travis,
-    },
-    {
-        id: '3',
-        name: 'Dr. Beckett Calger ',
-        speciality: 'Cardiologist  |',
-        hospital: '  Venus Hospital',
-        reviews: 4924,
-        rating: 4.4,
-        avatarUrl: IMAGES.travis,
-    },
-    {
-        id: '4',
-        name: 'Dr. Jada Srnsky     ',
-        speciality: 'Cardiologist  |',
-        hospital: '  Iri Hospital',
-        reviews: 5366,
-        rating: 4.6,
-        avatarUrl: IMAGES.travis,
-    },
-    {
-        id: '5',
-        name: 'Dr. Bernard Bliss   ',
-        speciality: 'Cardiologist  |',
-        hospital: '  The Valley Hospital',
-        reviews: 3279,
-        rating: 4.8,
-        avatarUrl: IMAGES.travis,
-    },
-    {
-        id: '6',
-        name: 'Dr. LAND Bliss   ',
-        speciality: 'Cardiologist  |',
-        hospital: '  The Valley Hospital',
-        reviews: 3279,
-        rating: 4.8,
-        avatarUrl: IMAGES.travis,
-    },
+  {
+    id: '1',
+    name: 'Dr. Travis Westaby',
+    speciality: 'Cardiologist  |',
+    hospital: '  Alka Hospital',
+    reviews: 3576,
+    rating: 4.3,
+    avatarUrl: IMAGES.travis,
+  },
+  {
+    id: '2',
+    name: 'Dr. Nathaniel Valle',
+    speciality: 'Cardiologist  |',
+    hospital: '  B&B Hospital',
+    reviews: 3837,
+    rating: 4.6,
+    avatarUrl: IMAGES.travis,
+  },
+  {
+    id: '3',
+    name: 'Dr. Beckett Calger ',
+    speciality: 'Cardiologist  |',
+    hospital: '  Venus Hospital',
+    reviews: 4924,
+    rating: 4.4,
+    avatarUrl: IMAGES.travis,
+  },
+  {
+    id: '4',
+    name: 'Dr. Jada Srnsky     ',
+    speciality: 'Cardiologist  |',
+    hospital: '  Iri Hospital',
+    reviews: 5366,
+    rating: 4.6,
+    avatarUrl: IMAGES.travis,
+  },
+  {
+    id: '5',
+    name: 'Dr. Bernard Bliss   ',
+    speciality: 'Cardiologist  |',
+    hospital: '  The Valley Hospital',
+    reviews: 3279,
+    rating: 4.8,
+    avatarUrl: IMAGES.travis,
+  },
+  {
+    id: '6',
+    name: 'Dr. LAND Bliss   ',
+    speciality: 'Cardiologist  |',
+    hospital: '  The Valley Hospital',
+    reviews: 3279,
+    rating: 4.8,
+    avatarUrl: IMAGES.travis,
+  },
 ];
 const Data = [
-    { key: '1', label: 'All', backgroundColor: '#286cfc', color: 'white' },
-    { key: '2', label: 'General', backgroundColor: 'white', color: '#286cfc' },
-    { key: '3', label: 'Dentist', backgroundColor: 'white', color: '#286cfc' },
-    { key: '4', label: 'Nutritionist', backgroundColor: 'white', color: '#286cfc' },
-    { key: '5', label: 'Neurologist', backgroundColor: 'white', color: '#286cfc' },
-    { key: '6', label: 'Pediatric', backgroundColor: 'white', color: '#286cfc' },
-    { key: '7', label: 'Radiologist', backgroundColor: 'white', color: '#286cfc' },
+  { key: '1', label: 'All', backgroundColor: '#286cfc', color: 'white' },
+  { key: '2', label: 'General', backgroundColor: 'white', color: '#286cfc' },
+  { key: '3', label: 'Dentist', backgroundColor: 'white', color: '#286cfc' },
+  {
+    key: '4',
+    label: 'Nutritionist',
+    backgroundColor: 'white',
+    color: '#286cfc',
+  },
+  {
+    key: '5',
+    label: 'Neurologist',
+    backgroundColor: 'white',
+    color: '#286cfc',
+  },
+  { key: '6', label: 'Pediatric', backgroundColor: 'white', color: '#286cfc' },
+  {
+    key: '7',
+    label: 'Radiologist',
+    backgroundColor: 'white',
+    color: '#286cfc',
+  },
 ];
 
-const DoctorItem: React.FC<DoctorItemProps> = ({ name, hospital, reviews, rating, speciality, avatarUrl }) => {
-    const [isHeartPressed, setIsHeartPressed] = useState(false);
-    const handleHeartPress = () => {
-        setIsHeartPressed(!isHeartPressed);
-        setModalVisible(true);
-    };
-    const [modalVisible, setModalVisible] = useState(false);
+const DoctorItem: React.FC<DoctorItemProps> = ({
+  name,
+  hospital,
+  reviews,
+  rating,
+  speciality,
+  avatarUrl,
+}) => {
+  const [isHeartPressed, setIsHeartPressed] = useState(false);
+  const handleHeartPress = () => {
+    setIsHeartPressed(!isHeartPressed);
+    setModalVisible(true);
+  };
+  const [modalVisible, setModalVisible] = useState(false);
 
-    return (
-        <View style={styles.itemContainer}>
-            <Image style={styles.avatar} source={avatarUrl} />
-            <View style={styles.infoContainer}>
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 70, backgroundColor: '#fff', marginBottom: 10 }}>
-                    <Text style={styles.name}>{name}</Text>
-                    <TouchableOpacity onPress={() => (setModalVisible(true))}>
-                        <CustomIcon
-                            type='Octicons'
-                            name='heart-fill'
-                            size={19}
-                            color={isHeartPressed ? 'grey' : '#3577FE'}
-                        />
-                    </TouchableOpacity>
+  return (
+    <View style={styles.itemContainer}>
+      <Image style={styles.avatar} source={avatarUrl} />
+      <View style={styles.infoContainer}>
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            gap: 70,
+            backgroundColor: '#fff',
+            marginBottom: 10,
+          }}>
+          <Text style={styles.name}>{name}</Text>
+          <TouchableOpacity onPress={() => setModalVisible(true)}>
+            <CustomIcon
+              type="Octicons"
+              name="heart-fill"
+              size={19}
+              color={isHeartPressed ? 'grey' : '#3577FE'}
+            />
+          </TouchableOpacity>
+        </View>
+        <View style={{ flexDirection: 'row' }}>
+          <Text style={styles.hospital}>{speciality}</Text>
+          <Text style={styles.hospital}>{hospital}</Text>
+        </View>
+        <View style={styles.ratingContainer}>
+          <CustomIcon
+            type="FontAwesome"
+            name="star-half-full"
+            size={15}
+            color="#2A6FFE"
+          />
+          <Text style={styles.rating}>{rating}</Text>
+          <Text style={styles.rating}>({reviews} reviews)</Text>
+        </View>
+      </View>
+      <Modal
+        isVisible={modalVisible}
+        style={{ margin: 0, justifyContent: 'flex-end' }}>
+        <View
+          style={{
+            padding: 20,
+            borderTopLeftRadius: 50,
+            borderTopRightRadius: 50,
+            alignItems: 'center',
+            height: '40%',
+            backgroundColor: '#f6f6f7',
+            gap: 50,
+          }}>
+          <Text style={{ color: 'black', fontWeight: '800', fontSize: 23 }}>
+            Remove from Favourites?
+          </Text>
+          <View style={{ gap: 10 }}>
+            <View
+              style={{
+                flexDirection: 'row',
+                paddingHorizontal: 10,
+                borderRadius: 30,
+                backgroundColor: '#fff',
+                elevation: 5,
+                height: 130,
+                alignItems: 'center',
+              }}>
+              <Image style={styles.avatar} source={avatarUrl} />
+              <View style={styles.modalInfoContainer}>
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    gap: 70,
+                    backgroundColor: '#fff',
+                    marginBottom: 10,
+                  }}>
+                  <Text style={styles.name}>{name}</Text>
+                  <CustomIcon
+                    type="Octicons"
+                    name="heart-fill"
+                    size={19}
+                    color={'#3577FE'}
+                  />
                 </View>
                 <View style={{ flexDirection: 'row' }}>
-                    <Text style={styles.hospital}>{speciality}</Text>
-                    <Text style={styles.hospital}>{hospital}</Text>
+                  <Text style={styles.hospital}>{speciality}</Text>
+                  <Text style={styles.hospital}>{hospital}</Text>
                 </View>
                 <View style={styles.ratingContainer}>
-                    <CustomIcon type='FontAwesome' name="star-half-full" size={15} color="#2A6FFE" />
-                    <Text style={styles.rating}>{rating}</Text>
-                    <Text style={styles.rating}>({reviews} reviews)</Text>
+                  <CustomIcon
+                    type="FontAwesome"
+                    name="star-half-full"
+                    size={15}
+                    color="#2A6FFE"
+                  />
+                  <Text style={styles.rating}>{rating}</Text>
+                  <Text style={styles.rating}>({reviews} reviews)</Text>
                 </View>
+              </View>
             </View>
-            <Modal isVisible={modalVisible} style={{ margin: 0, justifyContent: 'flex-end' }}>
-                <View style={{
-                    padding: 20,
-                    borderTopLeftRadius: 50,
-                    borderTopRightRadius: 50,
-                    alignItems: 'center',
-                    height: '40%',
-                    backgroundColor: '#f6f6f7',
-                    gap: 50
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                paddingTop: 20,
+                paddingBottom: 20,
+                justifyContent: 'space-evenly',
+                width: '100%',
+              }}>
+              <Pressable
+                onPress={() => setModalVisible(false)}
+                style={{
+                  backgroundColor: '#E7EEFF',
+                  borderRadius: 30,
+                  paddingVertical: 20,
+                  paddingHorizontal: 70,
+                  shadowColor: '#000',
+                  alignItems: 'center',
                 }}>
-                    <Text style={{ color: 'black', fontWeight: '800', fontSize: 23, }}>Remove from Favourites?</Text>
-                    <View style={{ gap: 10 }}>
-                        <View style={{
-                            flexDirection: 'row',
-                            paddingHorizontal: 10,
-                            borderRadius: 30,
-                            backgroundColor: '#fff',
-                            elevation: 5,
-                            height: 130,
-                            alignItems: 'center'
-                        }}>
-                            <Image style={styles.avatar} source={avatarUrl} />
-                            <View style={styles.modalInfoContainer}>
-                                <View style={{
-                                    flexDirection: 'row',
-                                    alignItems: 'center',
-                                    gap: 70,
-                                    backgroundColor: '#fff',
-                                    marginBottom: 10
-                                }}>
-                                    <Text style={styles.name}>{name}</Text>
-                                    <CustomIcon
-                                        type='Octicons'
-                                        name='heart-fill'
-                                        size={19}
-                                        color={'#3577FE'}
-                                    />
-                                </View>
-                                <View style={{ flexDirection: 'row' }}>
-                                    <Text style={styles.hospital}>{speciality}</Text>
-                                    <Text style={styles.hospital}>{hospital}</Text>
-                                </View>
-                                <View style={styles.ratingContainer}>
-                                    <CustomIcon type='FontAwesome' name="star-half-full" size={15} color="#2A6FFE" />
-                                    <Text style={styles.rating}>{rating}</Text>
-                                    <Text style={styles.rating}>({reviews} reviews)</Text>
-                                </View>
-                            </View>
-                        </View>
-                        <View style={{
-                            flexDirection: 'row',
-                            alignItems: 'center',
-                            paddingTop: 20,
-                            paddingBottom: 20,
-                            justifyContent: 'space-evenly',
-                            width: '100%',
-                        }}>
-                            <Pressable
-                                onPress={() => (setModalVisible(false))}
-                                style={{
-                                    backgroundColor: '#E7EEFF',
-                                    borderRadius: 30,
-                                    paddingVertical: 20,
-                                    paddingHorizontal: 70,
-                                    shadowColor: "#000",
-                                    alignItems: 'center'
-                                }}
-                            >
-                                <Text style={{ color: '#246BFD', fontSize: 14, fontWeight: 'bold' }}>Cancel</Text>
-                            </Pressable>
-                            <Pressable
-                                onPress={() => { setIsHeartPressed(true); setModalVisible(false); }}
-                                style={{
-                                    backgroundColor: '#246BFD',
-                                    borderRadius: 30,
-                                    paddingVertical: 18,
-                                    paddingHorizontal: 50,
-                                    elevation: 5,
-                                    shadowColor: "#246BFD",
-                                    shadowOffset: {
-                                        width: 0,
-                                        height: 2,
-                                    },
-                                    alignItems: 'center'
-                                }}
-                            >
-                                <Text style={{ color: '#fff', fontSize: 13, fontWeight: 'bold' }}>Yes, Remove</Text>
-                            </Pressable>
-                        </View>
-                    </View>
-                </View>
-            </Modal>
+                <Text
+                  style={{
+                    color: '#246BFD',
+                    fontSize: 14,
+                    fontWeight: 'bold',
+                  }}>
+                  Cancel
+                </Text>
+              </Pressable>
+              <Pressable
+                onPress={() => {
+                  setIsHeartPressed(true);
+                  setModalVisible(false);
+                }}
+                style={{
+                  backgroundColor: '#246BFD',
+                  borderRadius: 30,
+                  paddingVertical: 18,
+                  paddingHorizontal: 50,
+                  elevation: 5,
+                  shadowColor: '#246BFD',
+                  shadowOffset: {
+                    width: 0,
+                    height: 2,
+                  },
+                  alignItems: 'center',
+                }}>
+                <Text
+                  style={{ color: '#fff', fontSize: 13, fontWeight: 'bold' }}>
+                  Yes, Remove
+                </Text>
+              </Pressable>
+            </View>
+          </View>
         </View>
-    );
+      </Modal>
+    </View>
+  );
 };
 
 type SplashProps = NativeStackScreenProps<RootStackParams>;
