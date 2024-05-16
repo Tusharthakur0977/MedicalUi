@@ -1,7 +1,4 @@
-import {
-  NativeStackNavigationProp,
-  NativeStackScreenProps,
-} from '@react-navigation/native-stack';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React, { useState } from 'react';
 import {
   FlatList,
@@ -12,12 +9,10 @@ import {
 } from 'react-native';
 import CustomIcon from '../../components/Icon/Icon';
 import { DocotrsData, DoctorsCategoryData } from '../../seeds/Doctors';
-import { RootStackParams } from '../../typings/route';
+import { HomeStackParams } from '../../typings/route';
 import DoctorCard from './components/DoctorCard';
 import LikeModal from './components/LikeModal';
 import { useNavigation } from '@react-navigation/native';
-
-type TopDoctorsProps = NativeStackScreenProps<RootStackParams>;
 
 type DoctorCategoryList = {
   key: string;
@@ -35,9 +30,9 @@ export type DoctorCardType = {
   avatarUrl: any;
 };
 
-const TopDoctors: React.FC<TopDoctorsProps> = ({ route }) => {
+const TopDoctors = () => {
   const navigation =
-    useNavigation<NativeStackNavigationProp<RootStackParams, 'TopDoctors'>>();
+    useNavigation<NativeStackNavigationProp<HomeStackParams, 'topDoctor'>>();
 
   const [selectedDoctor, setSelectedDoctor] = useState<DoctorCardType>({
     avatarUrl: '',

@@ -10,21 +10,20 @@ import Foundation from 'react-native-vector-icons/Foundation';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Octicons from 'react-native-vector-icons/Octicons';
-
-
-
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const iconSet = {
-    FontAwesome,
-    MaterialIcons,
-    AntIcons,
-    EntypoIcons,
-    EvilIcons,
-    Feather,
-    Foundation,
-    FontAwesome5,
-    Ionicons,
-    Octicons
+  FontAwesome,
+  MaterialIcons,
+  AntIcons,
+  EntypoIcons,
+  EvilIcons,
+  Feather,
+  Foundation,
+  FontAwesome5,
+  Ionicons,
+  Octicons,
+  MaterialCommunityIcons,
 };
 
 export type IconTypes = keyof typeof iconSet;

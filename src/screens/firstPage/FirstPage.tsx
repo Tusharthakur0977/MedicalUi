@@ -1,14 +1,22 @@
-import {Image, Text, TouchableOpacity, View} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React from 'react';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import { RootStackParams } from '../../typings/route';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {styles} from './Styles';
+import {
+  HomeStackParams,
+  RegistrationStackParams,
+  RootStackParams,
+} from '../../typings/route';
+import { styles } from './Styles';
 
-type SplashProps = NativeStackScreenProps<RootStackParams>;
+const FirstPage = () => {
+  const navigation = useNavigation<
+    NativeStackNavigationProp<RootStackParams> &
+      NativeStackNavigationProp<RegistrationStackParams>
+  >();
 
-const FirstPage: React.FC<SplashProps> = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.headerContainer}>
@@ -38,7 +46,9 @@ const FirstPage: React.FC<SplashProps> = ({navigation}) => {
         </TouchableOpacity>
       </View>
       <Text style={styles.orText}>or</Text>
-      <TouchableOpacity style={styles.passwordButton} onPress={() => navigation.navigate('Home')}>
+      <TouchableOpacity
+        style={styles.passwordButton}
+        onPress={() => navigation.navigate('HomeStack')}>
         <Text style={styles.passwordButtonText}>Sign in with password</Text>
       </TouchableOpacity>
       <View style={styles.signUpContainer}>
@@ -46,7 +56,7 @@ const FirstPage: React.FC<SplashProps> = ({navigation}) => {
         <TouchableOpacity>
           <Text
             style={styles.signUpButton}
-            onPress={() => navigation.navigate('SignUp')}>
+            onPress={() => navigation.navigate('signUp')}>
             Sign up
           </Text>
         </TouchableOpacity>

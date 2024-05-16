@@ -1,16 +1,20 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-native/no-inline-styles */
-import React, {useEffect, useRef} from 'react';
-import {Animated, Text, View, Image, Easing} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import { RootStackParams } from '../../typings/route';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import React, { useEffect, useRef } from 'react';
+import { Animated, Easing, Image, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import IMAGES from '../../assets';
-import {styles} from './Styles';
+import { RegistrationStackParams } from '../../typings/route';
+import { styles } from './Styles';
 
-type SplashProps = NativeStackScreenProps<RootStackParams>;
+const Splash = () => {
+  const navigation =
+    useNavigation<
+      NativeStackNavigationProp<RegistrationStackParams, 'splash'>
+    >();
 
-const Splash: React.FC<SplashProps> = ({navigation}) => {
   const rotateValue = useRef(new Animated.Value(0)).current;
 
   const startRotating = () => {
@@ -28,7 +32,7 @@ const Splash: React.FC<SplashProps> = ({navigation}) => {
   useEffect(() => {
     startRotating();
     setTimeout(() => {
-      navigation.navigate('FirstPage');
+      navigation.replace('FirstPage');
     }, 2000);
   }, []);
 
@@ -44,8 +48,9 @@ const Splash: React.FC<SplashProps> = ({navigation}) => {
         <Text style={styles.text}>Medica</Text>
       </View>
       <View style={styles.container2}>
-        <Animated.View style={[styles.loader, {transform: [{rotate: spin}]}]}>
-          {Array.from({length: 6}).map((_, index) => (
+        <Animated.View
+          style={[styles.loader, { transform: [{ rotate: spin }] }]}>
+          {Array.from({ length: 6 }).map((_, index) => (
             <View
               key={index}
               style={[

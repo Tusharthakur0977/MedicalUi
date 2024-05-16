@@ -2,13 +2,13 @@
 import {Image, Text, TouchableOpacity, View} from 'react-native';
 import React, {useState} from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import { RootStackParams } from '../../typings/route';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RegistrationStackParams, RootStackParams } from '../../typings/route';
 import IMAGES from '../../assets';
-import {styles} from './Styles';
+import { styles } from './Styles';
 import CustomInput from '../../components/CustomInput/CustomInput';
 import CustomIcon from '../../components/Icon/Icon';
-type SplashProps = NativeStackScreenProps<RootStackParams>;
+import { useNavigation } from '@react-navigation/native';
 
 type CustomCheckboxProps = {
   label: string;
@@ -33,95 +33,96 @@ const CustomCheckbox: React.FC<CustomCheckboxProps> = ({
   );
 };
 
-const SignIn: React.FC<SplashProps> = ({navigation}) => {
+const SignIn = () => {
   const [isChecked, setChecked] = useState(false);
+
+  const navigation = useNavigation<
+    NativeStackNavigationProp<RootStackParams> &
+      NativeStackNavigationProp<RegistrationStackParams>
+  >();
 
   const toggleCheck = () => {
     setChecked(!isChecked);
   };
 
-const [email, setemail] = useState('');
-const [password, setpassword] = useState('');
+  const [email, setemail] = useState('');
+  const [password, setpassword] = useState('');
 
   const [errors, setErrors] = useState({
     email: '',
     password: '',
   });
 
-  const handleLogin = ()=>{
+  const handleLogin = () => {
     let newErrors = {
       email: '',
       password: '',
     };
-  if (email === ''){
-    newErrors.email = '*Email is required';
-  }
+    if (email === '') {
+      newErrors.email = '*Email is required';
+    }
     const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
     if (!emailRegex.test(email)) {
       newErrors.email = '*Invalid Email';
     }
-  if (password === ''){
-    newErrors.password = '*Password is required';
-  }
+    if (password === '') {
+      newErrors.password = '*Password is required';
+    }
     const hasErrors = Object.values(newErrors).some(error => error !== '');
     if (!hasErrors) {
       // If there are no errors, navigate to the next screen
-      navigation.navigate('SetUpProfile');
+      navigation.navigate('HomeStack', { screen: 'home' });
     }
-  setErrors(newErrors);
+    setErrors(newErrors);
   };
 
   return (
     <View style={styles.container}>
-        <CustomIcon
-          type='FontAwesome'
-          name='arrow-left'
-          size={30}
-          color='black'
-          style={styles.arrow}
-          onPress={()=> (navigation.goBack())}
-        />
+      <CustomIcon
+        type="FontAwesome"
+        name="arrow-left"
+        size={30}
+        color="black"
+        style={styles.arrow}
+        onPress={() => navigation.goBack()}
+      />
       <Image source={IMAGES.signupInLogo} style={styles.logo1} />
       <Text style={styles.header}>Login To Your Account</Text>
 
       <View style={styles.inputcontainer}>
         <CustomInput
           mainContStyles={styles.input}
-          placeholder='Email'
+          placeholder="Email"
           onTextChange={setemail}
-          placeholderTextColor='grey'
+          placeholderTextColor="grey"
           inputStyle={{ flex: 1, color: 'black' }}
           isLeftIcon
-          leftIconType='FontAwesome'
-          leftIconName='envelope-o'
+          leftIconType="FontAwesome"
+          leftIconName="envelope-o"
           leftIconSize={20}
         />
         {errors.email ? (
-          <Text
-            style={{ color: 'red', marginTop: -15, }}>
-            {errors.email}
-          </Text>
+          <Text style={{ color: 'red', marginTop: -15 }}>{errors.email}</Text>
         ) : null}
         <CustomInput
           mainContStyles={styles.input}
-          placeholder='Password'
-          placeholderTextColor='grey'
+          placeholder="Password"
+          placeholderTextColor="grey"
           onTextChange={setpassword}
-          inputStyle={{ flex: 1, color:'black' }}
+          inputStyle={{ flex: 1, color: 'black' }}
           isLeftIcon
-          leftIconType='FontAwesome'
-          leftIconName='lock'
+          leftIconType="FontAwesome"
+          leftIconName="lock"
           leftIconSize={20}
           secureTextEntry
         />
         {errors.password ? (
-          <Text
-            style={{ color: 'red', marginBottom: 10, marginTop: -15, }}>
+          <Text style={{ color: 'red', marginBottom: 10, marginTop: -15 }}>
             {errors.password}
           </Text>
         ) : null}
       </View>
-     
+
       <View style={styles.checkboxContainer}>
         <CustomCheckbox
           label="Remember me"
@@ -130,13 +131,11 @@ const [password, setpassword] = useState('');
         />
       </View>
 
-      <TouchableOpacity
-        style={styles.button}
-        onPress={handleLogin}>
+      <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text style={styles.buttonText}>Sign in</Text>
       </TouchableOpacity>
       <TouchableOpacity>
-      <Text style={styles.forgot}>Forgot the password ?</Text>
+        <Text style={styles.forgot}>Forgot the password ?</Text>
       </TouchableOpacity>
       <Text style={styles.orText}>or continue with</Text>
 
@@ -158,7 +157,7 @@ const [password, setpassword] = useState('');
 
       <View style={styles.footerTextContainer}>
         <Text style={styles.footerText}>Don't have an account? </Text>
-        <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
+        <TouchableOpacity onPress={() => navigation.navigate('signUp')}>
           <Text style={styles.signinText}>Sign up</Text>
         </TouchableOpacity>
       </View>

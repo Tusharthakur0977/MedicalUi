@@ -1,14 +1,17 @@
-import {
-  NativeStackScreenProps,
-  createNativeStackNavigator,
-} from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
-import { RootStackParams } from '../typings/route';
+import {
+  BottomTabParams,
+  HomeStackParams,
+  RegistrationStackParams,
+  RootStackParams,
+  SetUpProfileStackParams,
+} from '../typings/route';
 import Splash from '../screens/splash/Splash';
 import FirstPage from '../screens/firstPage/FirstPage';
 import SignIn from '../screens/login/SignIn';
 import SignUp from '../screens/register/SignUp';
-import SetUpProfile from '../screens/profile/SetUpProfile';
+import SetUpProfile from '../screens/setUpProfile/SetUpProfile';
 import CreatePin from '../screens/createPin/CreatePin';
 import SetFingerPrint from '../screens/fingerPrintScan/SetFingerPrint';
 import Home from '../screens/home/Home';
@@ -17,21 +20,62 @@ import CustomIcon from '../components/Icon/Icon';
 import Notifications from '../screens/notifications/Notifications';
 import Favourites from '../screens/favourites/Favourites';
 import TopDoctors from '../screens/topDoctors/TopDoctors';
+import profile from '../screens/profile/profile';
+import Profile from '../screens/profile/profile';
 
-const Tab = createBottomTabNavigator();
-export const Tabbing = () => {
+const Stack = createNativeStackNavigator<RootStackParams>();
+const RegistrationStack = createNativeStackNavigator<RegistrationStackParams>();
+const SetUpProfileStack = createNativeStackNavigator<SetUpProfileStackParams>();
+const HomeStack = createNativeStackNavigator<HomeStackParams>();
+const TabStack = createBottomTabNavigator<BottomTabParams>();
+
+function RegistrationStackNavigator() {
   return (
-    <Tab.Navigator
+    <RegistrationStack.Navigator screenOptions={{ headerShown: false }}>
+      <RegistrationStack.Screen name="splash" component={Splash} />
+      <RegistrationStack.Screen name="FirstPage" component={FirstPage} />
+      <RegistrationStack.Screen name="signIn" component={SignIn} />
+      <RegistrationStack.Screen name="signUp" component={SignUp} />
+    </RegistrationStack.Navigator>
+  );
+}
+
+function SetUpProfileStackNavigator() {
+  return (
+    <SetUpProfileStack.Navigator screenOptions={{ headerShown: false }}>
+      <SetUpProfileStack.Screen name="SetUpProfile" component={SetUpProfile} />
+      <SetUpProfileStack.Screen name="CreatePin" component={CreatePin} />
+      <SetUpProfileStack.Screen
+        name="SetFingerPrint"
+        component={SetFingerPrint}
+      />
+    </SetUpProfileStack.Navigator>
+  );
+}
+
+function HomeStackNavigator() {
+  return (
+    <HomeStack.Navigator screenOptions={{ headerShown: false }}>
+      <HomeStack.Screen name="TabStack" component={TabbingStackNavigator} />
+      <HomeStack.Screen name="notification" component={Notifications} />
+      <HomeStack.Screen name="favouriteDoctor" component={Favourites} />
+      <HomeStack.Screen name="topDoctor" component={TopDoctors} />
+    </HomeStack.Navigator>
+  );
+}
+
+function TabbingStackNavigator() {
+  return (
+    <TabStack.Navigator
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
-          backgroundColor: '#fff',
           borderTopWidth: 0,
           paddingHorizontal: 30,
           paddingBottom: 10,
         },
       }}>
-      <Tab.Screen
+      <TabStack.Screen
         name="Home"
         component={Home}
         options={{
@@ -45,41 +89,55 @@ export const Tabbing = () => {
           ),
         }}
       />
-      <Tab.Screen
-        name="Appointeme.."
-        component={SignIn}
+      <TabStack.Screen
+        name="Appointment"
+        component={Favourites}
         options={{
           tabBarIcon: ({ focused }) => (
             <CustomIcon
-              name="calendar"
+              name="calendar-month"
               color={focused ? '#286cfc' : 'grey'}
               size={30}
-              type={'AntIcons'}
+              type={'MaterialIcons'}
             />
           ),
         }}
       />
-      <Tab.Screen
+      <TabStack.Screen
         name="History"
-        component={SignUp}
+        component={Notifications}
         options={{
           tabBarIcon: ({ focused }) => (
             <CustomIcon
-              name="file-text"
+              name="history"
               color={focused ? '#286cfc' : 'grey'}
               size={30}
-              type={'Feather'}
+              type={'MaterialIcons'}
             />
           ),
         }}
       />
-      <Tab.Screen
+      <TabStack.Screen
         name="Articles"
-        component={FirstPage}
+        component={TopDoctors}
         options={{
           tabBarIcon: ({ focused }) => (
             <CustomIcon
-              name="file-text"
+              name="file-document-outline"
+              color={focused ? '#286cfc' : 'grey'}
+              size={30}
+              type={'MaterialCommunityIcons'}
+            />
+          ),
+        }}
+      />
+      <TabStack.Screen
+        name="Profile"
+        component={Profile}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <CustomIcon
+              name="user"
               color={focused ? '#286cfc' : 'grey'}
               size={30}
               type={'Feather'}
@@ -87,92 +145,34 @@ export const Tabbing = () => {
           ),
         }}
       />
-      <Tab.Screen
-        name="Profile"
-        component={Splash}
-        options={{
-          tabBarIcon: ({ focused }) => (
-            <CustomIcon
-              style={{ fontFamily: '' }}
-              name="user-o"
-              color={focused ? '#286cfc' : 'grey'}
-              size={25}
-              type={'FontAwesome'}
-            />
-          ),
-        }}
-      />
-    </Tab.Navigator>
+    </TabStack.Navigator>
   );
-};
+}
 
-const Stack = createNativeStackNavigator();
-type SplashProps = NativeStackScreenProps<RootStackParams>;
-
-const Routing: React.FC<SplashProps> = () => {
+function Routing() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: true }}>
       <Stack.Screen
-        name="Splash"
-        component={Splash}
+        name="RegistrationStack"
+        component={RegistrationStackNavigator}
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name="FirstPage"
-        component={FirstPage}
+        name="SetUpProfileStack"
+        component={SetUpProfileStackNavigator}
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name="SignUp"
-        component={SignUp}
+        name="HomeStack"
+        component={HomeStackNavigator}
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name="SignIn"
-        component={SignIn}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="SetUpProfile"
-        component={SetUpProfile}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="CreatePin"
-        component={CreatePin}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="SetFingerPrint"
-        component={SetFingerPrint}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="Home"
-        component={Tabbing}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="Notifications"
-        component={Notifications}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="Favourites"
-        component={Favourites}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="TopDoctors"
-        component={TopDoctors}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="UserDetails"
-        component={TopDoctors}
+        name="TabStack"
+        component={TabbingStackNavigator}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );
-};
+}
 export default Routing;

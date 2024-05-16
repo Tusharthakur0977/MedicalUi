@@ -1,22 +1,27 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { useState } from 'react';
-import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import CustomInput from '../../components/CustomInput/CustomInput';
-import { RootStackParams } from '../../typings/route';
 import { styles } from './Styles';
-import CustomIcon from '../../components/Icon/Icon';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { SetUpProfileStackParams } from '../../typings/route';
+import { launchImageLibrary } from 'react-native-image-picker';
 
-type SplashProps = NativeStackScreenProps<RootStackParams>;
+const SetUpProfile = () => {
+  const navigation =
+    useNavigation<
+      NativeStackNavigationProp<SetUpProfileStackParams, 'SetUpProfile'>
+    >();
 
-const SetUpProfile: React.FC<SplashProps> = ({ navigation }) => {
   const [name, setName] = useState<string>('');
   const [nickname, setNickName] = useState<string>('');
   const [dob, setDob] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [gender, setGender] = useState<string>('');
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const [errors, setErrors] = useState({
     name: '',
@@ -65,23 +70,49 @@ const SetUpProfile: React.FC<SplashProps> = ({ navigation }) => {
     }
   };
 
-  const [fullName, setFullName] = useState('');
+  const openImagePicker = () => {
+    const options = {
+      mediaType: 'photo',
+      includeBase64: false,
+      maxHeight: 2000,
+      maxWidth: 2000,
+    };
 
+    launchImageLibrary(options, handleResponse);
+  };
+
+  const handleResponse = response => {
+    if (response.didCancel) {
+      console.log('User cancelled image picker');
+    } else if (response.error) {
+      console.log('Image picker error: ', response.error);
+    } else {
+      let imageUri = response.uri || response.assets?.[0]?.uri;
+      setSelectedImage(imageUri);
+    }
+  };
   return (
-    <ScrollView style={styles.container} >
+    <ScrollView style={styles.container}>
       <View style={styles.headcontainer}>
         <Icon
           name="arrow-left"
-          color='black'
+          color="black"
           size={24}
           style={styles.arrow}
-          onPress={() => (navigation.goBack())}
+          onPress={() => navigation.goBack()}
         />
         <Text style={styles.headtext}>Fill Your Profile</Text>
       </View>
       <View style={styles.header}>
-        <View style={styles.profileImage} />
-        <TouchableOpacity style={styles.editIcon}>
+        <View style={styles.profileImageContainer}>
+          {selectedImage && (
+            <Image
+              source={{ uri: selectedImage }}
+              style={styles.profileImage}
+            />
+          )}
+        </View>
+        <TouchableOpacity style={styles.editIcon} onPress={openImagePicker}>
           <Icon name="pencil" size={20} color="#fff" />
         </TouchableOpacity>
       </View>
@@ -90,12 +121,14 @@ const SetUpProfile: React.FC<SplashProps> = ({ navigation }) => {
         {/*fullName*/}
         <CustomInput
           mainContStyles={styles.input}
-        inputStyle={ {flex: 1, color: '#333'} }
+          inputStyle={{ flex: 1, color: '#333' }}
           placeholder="Full Name"
           placeholderTextColor="grey"
           onTextChange={setName}
         />
-        {errors.name ? <Text style={styles.errorText}>{errors.name}</Text> : null}
+        {errors.name ? (
+          <Text style={styles.errorText}>{errors.name}</Text>
+        ) : null}
 
         {/*Nickname*/}
         <CustomInput
@@ -105,13 +138,15 @@ const SetUpProfile: React.FC<SplashProps> = ({ navigation }) => {
           placeholderTextColor="grey"
           onTextChange={setNickName}
         />
-        {errors.nickname ? <Text style={styles.errorText}>{errors.nickname}</Text> : null}
+        {errors.nickname ? (
+          <Text style={styles.errorText}>{errors.nickname}</Text>
+        ) : null}
 
         {/*DateOfBirth*/}
         <CustomInput
           mainContStyles={styles.input}
-          rightIconName='calendar'
-          rightIconType='FontAwesome'
+          rightIconName="calendar"
+          rightIconType="FontAwesome"
           rightIconSize={20}
           isRightIcon
           inputStyle={{ flex: 1, color: '#333' }}
@@ -121,31 +156,35 @@ const SetUpProfile: React.FC<SplashProps> = ({ navigation }) => {
         />
         {errors.dob ? <Text style={styles.errorText}>{errors.dob}</Text> : null}
 
-         {/*Email*/}
+        {/*Email*/}
         <CustomInput
           mainContStyles={styles.input}
-          rightIconName='envelope-o'
-          rightIconType='FontAwesome'
+          rightIconName="envelope-o"
+          rightIconType="FontAwesome"
           isRightIcon
           inputStyle={{ flex: 1, color: '#333' }}
           placeholder="Email"
           placeholderTextColor="grey"
           onTextChange={setEmail}
         />
-        {errors.email ? <Text style={styles.errorText}>{errors.email}</Text> : null}
+        {errors.email ? (
+          <Text style={styles.errorText}>{errors.email}</Text>
+        ) : null}
 
         {/*Gender*/}
         <CustomInput
           mainContStyles={styles.input}
-          rightIconName='intersex'
-          rightIconType='FontAwesome'
+          rightIconName="intersex"
+          rightIconType="FontAwesome"
           isRightIcon
           inputStyle={{ flex: 1, color: '#333' }}
           placeholder="Gender"
           placeholderTextColor="grey"
           onTextChange={setGender}
         />
-        {errors.gender ? <Text style={styles.errorText}>{errors.gender}</Text> : null}
+        {errors.gender ? (
+          <Text style={styles.errorText}>{errors.gender}</Text>
+        ) : null}
       </View>
       <TouchableOpacity style={styles.button} onPress={handleSignup}>
         <Text style={styles.buttonText}>Continue</Text>

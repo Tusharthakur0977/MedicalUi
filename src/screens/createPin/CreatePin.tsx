@@ -2,13 +2,16 @@
 import {Text, TextInput, TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import React, { useRef } from 'react';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import { RootStackParams } from '../../typings/route';
-import {styles} from './Styles';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { SetUpProfileStackParams } from '../../typings/route';
+import { styles } from './Styles';
+import { useNavigation } from '@react-navigation/native';
 
-type SplashProps = NativeStackScreenProps<RootStackParams>;
-
-const CreatePin: React.FC<SplashProps> = ({navigation}) => {
+const CreatePin = () => {
+  const navigation =
+    useNavigation<
+      NativeStackNavigationProp<SetUpProfileStackParams, 'CreatePin'>
+    >();
 
   const inputRef1 = useRef(null);
   const inputRef2 = useRef(null);
@@ -17,7 +20,7 @@ const CreatePin: React.FC<SplashProps> = ({navigation}) => {
 
   const maxLength = 1; // Example maximum length
 
-  const handleTextChange = (text, inputRef) => {
+  const handleTextChange = (text: any, inputRef: any) => {
     if (text.length === maxLength && inputRef.current) {
       inputRef.current.focus();
     }
@@ -46,16 +49,16 @@ const CreatePin: React.FC<SplashProps> = ({navigation}) => {
           keyboardType="numeric"
           maxLength={maxLength}
           secureTextEntry={true}
-          onChangeText={(text) => handleTextChange(text, inputRef2)}
+          onChangeText={text => handleTextChange(text, inputRef2)}
         />
         <TextInput
-        ref={inputRef2}
+          ref={inputRef2}
           style={styles.input}
           placeholderTextColor="#A9A9A9"
           keyboardType="numeric"
           maxLength={maxLength}
           secureTextEntry={true}
-          onChangeText={(text) => handleTextChange(text, inputRef3)}
+          onChangeText={text => handleTextChange(text, inputRef3)}
         />
         <TextInput
           ref={inputRef3}
@@ -64,7 +67,7 @@ const CreatePin: React.FC<SplashProps> = ({navigation}) => {
           keyboardType="numeric"
           maxLength={maxLength}
           secureTextEntry={true}
-          onChangeText={(text) => handleTextChange(text, inputRef4)}
+          onChangeText={text => handleTextChange(text, inputRef4)}
         />
         <TextInput
           ref={inputRef4}
@@ -73,7 +76,7 @@ const CreatePin: React.FC<SplashProps> = ({navigation}) => {
           keyboardType="numeric"
           maxLength={maxLength}
           secureTextEntry={true}
-          onChangeText={(text) => handleTextChange(text, inputRef4)}
+          onChangeText={text => handleTextChange(text, inputRef4)}
         />
       </View>
       <TouchableOpacity

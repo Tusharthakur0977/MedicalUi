@@ -5,33 +5,15 @@ import CustomInput from '../../components/CustomInput/CustomInput'
 import CustomIcon from '../../components/Icon/Icon'
 import { styles } from './Style'
 import Slick from 'react-native-slick'
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParams } from '../../typings/route';
-import { NavigationContainer } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { HomeStackParams } from '../../typings/route';
+import { useNavigation } from '@react-navigation/native';
+import { Data, data } from '../../seeds/Home';
 
-type SplashProps = NativeStackScreenProps<RootStackParams>;
+const Home = () => {
+  const navigation =
+    useNavigation<NativeStackNavigationProp<HomeStackParams, 'home'>>();
 
-const data = [
-  { key: '1', name: 'General', icon: IMAGES.general },
-  { key: '2', name: 'Dentist', icon: IMAGES.dentist },
-  { key: '3', name: 'Ophthal..', icon: IMAGES.ophithal },
-  { key: '4', name: 'Nutrition..', icon: IMAGES.nutrition },
-  { key: '5', name: 'Neurolo..', icon: IMAGES.neurologist },
-  { key: '6', name: 'Pediatric', icon: IMAGES.pediatric },
-  { key: '7', name: 'Radiolo..', icon: IMAGES.radiologic },
-  { key: '8', name: 'More', icon: IMAGES.more },
-];
-const Data = [
-  { key: '1', label: 'All', backgroundColor: '#286cfc', color: 'white' },
-  { key: '2', label: 'General', backgroundColor: 'white', color: '#286cfc' },
-  { key: '3', label: 'Dentist', backgroundColor: 'white', color: '#286cfc' },
-  { key: '4', label: 'Nutritionist', backgroundColor: 'white', color: '#286cfc' },
-  { key: '5', label: 'Neurologist', backgroundColor: 'white', color: '#286cfc' },
-  { key: '6', label: 'Pediatric', backgroundColor: 'white', color: '#286cfc' },
-  { key: '7', label: 'Radiologist', backgroundColor: 'white', color: '#286cfc' },
-];
-
-const Home: React.FC<SplashProps> = ({ navigation }) => {
   return (
     <ScrollView
       contentContainerStyle={styles.container}
@@ -51,12 +33,12 @@ const Home: React.FC<SplashProps> = ({ navigation }) => {
           <CustomIcon
             type="Feather"
             name="bell"
-            onPress={() => navigation.navigate('Notifications')}
+            onPress={() => navigation.navigate('notification')}
           />
           <CustomIcon
             type="Feather"
             name="heart"
-            onPress={() => navigation.navigate('Favourites')}
+            onPress={() => navigation.navigate('favouriteDoctor')}
           />
         </View>
       </View>
@@ -162,7 +144,7 @@ const Home: React.FC<SplashProps> = ({ navigation }) => {
         }}>
         <View style={styles.topDoctors}>
           <Text style={styles.topdocTitle}>Top Doctors</Text>
-          <TouchableOpacity onPress={() => navigation.navigate('TopDoctors')}>
+          <TouchableOpacity onPress={() => navigation.navigate('topDoctor')}>
             <Text style={styles.seeAll}>See All</Text>
           </TouchableOpacity>
         </View>
@@ -206,5 +188,5 @@ const Home: React.FC<SplashProps> = ({ navigation }) => {
       </View>
     </ScrollView>
   );
-}
+};
 export default Home

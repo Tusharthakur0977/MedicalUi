@@ -4,8 +4,12 @@ import CustomIcon from '../../components/Icon/Icon';
 import IMAGES from '../../assets';
 import { useState } from 'react';
 import Modal from 'react-native-modal';
-import { RootStackParams } from '../../typings/route';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { HomeStackParams, RootStackParams } from '../../typings/route';
+import {
+  NativeStackNavigationProp,
+  NativeStackScreenProps,
+} from '@react-navigation/native-stack';
+import { useNavigation } from '@react-navigation/native';
 
 type DoctorItemProps = {
   name: string;
@@ -268,107 +272,109 @@ const DoctorItem: React.FC<DoctorItemProps> = ({
   );
 };
 
-type SplashProps = NativeStackScreenProps<RootStackParams>;
+const Favourites = () => {
+  const navigation =
+    useNavigation<
+      NativeStackNavigationProp<HomeStackParams, 'favouriteDoctor'>
+    >();
 
-const Favourites: React.FC<SplashProps> = ({ navigation }) => {
-
-    return (
-      <View style={styles.container1}>
+  return (
+    <View style={styles.container1}>
+      <View
+        style={{
+          flexDirection: 'row',
+          paddingHorizontal: 15,
+          backgroundColor: '#fff',
+          alignItems: 'center',
+          gap: 10,
+          justifyContent: 'space-between',
+          marginBottom: 10,
+        }}>
         <View
           style={{
             flexDirection: 'row',
-            paddingHorizontal: 15,
-            backgroundColor: '#fff',
             alignItems: 'center',
+            flex: 1,
             gap: 10,
-            justifyContent: 'space-between',
-            marginBottom: 10,
           }}>
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              flex: 1,
-              gap: 10,
-            }}>
-            <CustomIcon
-              type="AntIcons"
-              name="arrowleft"
-              color="black"
-              style={{ paddingVertical: 10 }}
-              onPress={() => navigation.goBack()}
-              size={27}
-            />
-            <Text style={{ color: 'black', fontSize: 23, fontWeight: 'bold' }}>
-              My Favourite Doctors
-            </Text>
-          </View>
-          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 15 }}>
-            <CustomIcon type="Feather" name="search" color="black" size={27} />
-            <CustomIcon
-              type="Ionicons"
-              name="ellipsis-horizontal-circle"
-              color="black"
-              size={27}
-              style={{ paddingVertical: 10 }}
-            />
-          </View>
-        </View>
-        <View>
-          <FlatList
-            renderItem={({ item }) => (
-              <TouchableOpacity
-                style={{
-                  borderWidth: 2,
-                  borderRadius: 20,
-                  borderColor: '#286cfc',
-                  paddingVertical: 7,
-                  backgroundColor: item.backgroundColor,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  paddingHorizontal: 15,
-                }}>
-                <Text
-                  style={{
-                    fontWeight: 'bold',
-                    color: item.color,
-                  }}>
-                  {item.label}
-                </Text>
-              </TouchableOpacity>
-            )}
-            horizontal
-            data={Data}
-            keyExtractor={item => item.key}
-            contentContainerStyle={{ gap: 10, paddingHorizontal: 10 }}
-            showsHorizontalScrollIndicator={false}
+          <CustomIcon
+            type="AntIcons"
+            name="arrowleft"
+            color="black"
+            style={{ paddingVertical: 10 }}
+            onPress={() => navigation.goBack()}
+            size={27}
           />
+          <Text style={{ color: 'black', fontSize: 23, fontWeight: 'bold' }}>
+            My Favourite Doctors
+          </Text>
         </View>
-
-        <View>
-          <FlatList
-            data={DATA}
-            renderItem={({ item }) => (
-              <DoctorItem
-                name={item.name}
-                speciality={item.speciality}
-                hospital={item.hospital}
-                reviews={item.reviews}
-                rating={item.rating}
-                avatarUrl={item.avatarUrl}
-              />
-            )}
-            keyExtractor={item => item.id}
-            style={styles.container}
-            contentContainerStyle={{
-              gap: 20,
-            }}
-            showsVerticalScrollIndicator={false}
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 15 }}>
+          <CustomIcon type="Feather" name="search" color="black" size={27} />
+          <CustomIcon
+            type="Ionicons"
+            name="ellipsis-horizontal-circle"
+            color="black"
+            size={27}
+            style={{ paddingVertical: 10 }}
           />
         </View>
       </View>
-    );
-}
+      <View>
+        <FlatList
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              style={{
+                borderWidth: 2,
+                borderRadius: 20,
+                borderColor: '#286cfc',
+                paddingVertical: 7,
+                backgroundColor: item.backgroundColor,
+                alignItems: 'center',
+                justifyContent: 'center',
+                paddingHorizontal: 15,
+              }}>
+              <Text
+                style={{
+                  fontWeight: 'bold',
+                  color: item.color,
+                }}>
+                {item.label}
+              </Text>
+            </TouchableOpacity>
+          )}
+          horizontal
+          data={Data}
+          keyExtractor={item => item.key}
+          contentContainerStyle={{ gap: 10, paddingHorizontal: 10 }}
+          showsHorizontalScrollIndicator={false}
+        />
+      </View>
+
+      <View>
+        <FlatList
+          data={DATA}
+          renderItem={({ item }) => (
+            <DoctorItem
+              name={item.name}
+              speciality={item.speciality}
+              hospital={item.hospital}
+              reviews={item.reviews}
+              rating={item.rating}
+              avatarUrl={item.avatarUrl}
+            />
+          )}
+          keyExtractor={item => item.id}
+          style={styles.container}
+          contentContainerStyle={{
+            gap: 20,
+          }}
+          showsVerticalScrollIndicator={false}
+        />
+      </View>
+    </View>
+  );
+};
 const styles = StyleSheet.create({
     container1: {
         flex: 1,

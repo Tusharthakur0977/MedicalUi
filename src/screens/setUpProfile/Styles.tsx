@@ -4,7 +4,7 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FFF',
-    paddingTop: 50,
+    paddingVertical: 20,
   },
   arrow: {
     paddingRight: 20,
@@ -12,38 +12,42 @@ export const styles = StyleSheet.create({
   errorText: {
     color: 'red',
     alignSelf: 'flex-start',
-    marginLeft:25,
-    marginTop: -10
+    marginLeft: 25,
+    marginTop: -10,
   },
   headcontainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingBottom: 45,
     marginLeft: 20,
-    marginTop: -7
+    marginTop: -7,
   },
   headtext: {
     color: 'black',
     fontSize: 24,
     marginLeft: -4,
-    fontWeight: '600'
+    fontWeight: '600',
   },
 
   header: {
     justifyContent: 'center',
     alignItems: 'center',
     position: 'relative',
-    marginBottom: 30,
+    marginBottom: 20,
   },
-  profileImage: {
+  profileImageContainer: {
     width: 155,
     height: 155,
     borderRadius: 77.5,
     backgroundColor: '#E0E0E0',
   },
+  profileImage: {
+    width: 155,
+    height: 155,
+    borderRadius: 77.5,
+  },
   editIcon: {
     position: 'absolute',
-    right: 140,
+    right: 125,
     bottom: 11,
     width: 40,
     height: 40,
@@ -56,7 +60,7 @@ export const styles = StyleSheet.create({
   inputContainer: {
     flex: 1,
     alignItems: 'center',
-    gap:10
+    gap: 10,
   },
   input: {
     width: '90%',
@@ -66,7 +70,7 @@ export const styles = StyleSheet.create({
     borderColor: '#DDD',
     borderRadius: 20,
     backgroundColor: '#efeff0',
-    gap: 10
+    gap: 10,
   },
   button: {
     backgroundColor: '#5677fc',
@@ -83,7 +87,5 @@ export const styles = StyleSheet.create({
     fontSize: 18,
   },
   lefticon: {},
-  iconcont: {
-
-  }
+  iconcont: {},
 });

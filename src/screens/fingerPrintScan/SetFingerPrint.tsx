@@ -10,23 +10,31 @@ import {
 import React, {useEffect, useState} from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Icons from 'react-native-vector-icons/FontAwesome';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import { RootStackParams } from '../../typings/route';
 import IMAGES from '../../assets';
-import {styles} from './Styles';
+import { styles } from './Styles';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import {
+  HomeStackParams,
+  RootStackParams,
+  SetUpProfileStackParams,
+} from '../../typings/route';
 
-
-type SplashProps = NativeStackScreenProps<RootStackParams>;
-
-const SetFingerPrint: React.FC<SplashProps> = ({navigation}) => {
+const SetFingerPrint = () => {
   const [modalVisible, setModalVisible] = useState(false);
+
+  const navigation = useNavigation<
+    NativeStackNavigationProp<RootStackParams> &
+      NativeStackNavigationProp<HomeStackParams>
+  >();
+
   useEffect(() => {
     if (modalVisible) {
       const timer = setTimeout(() => {
         setModalVisible(false);
-        navigation.navigate('Home')
+        navigation.navigate('HomeStack', { screen: 'home' });
       }, 5000);
-      return () => clearTimeout(timer); 
+      return () => clearTimeout(timer);
     }
   }, [modalVisible, navigation]);
   return (
@@ -37,7 +45,7 @@ const SetFingerPrint: React.FC<SplashProps> = ({navigation}) => {
           size={30}
           color="black"
           style={styles.arrow}
-          onPress={() => navigation.navigate('CreatePin')}
+          onPress={() => navigation.goBack()}
         />
         <Text style={styles.headtext}>Set Your Fingerprint</Text>
       </View>
