@@ -1,8 +1,8 @@
-import {combineReducers} from 'redux';
-import cartReducer from './slices/CartSlice';
+import { combineReducers } from 'redux';
+import bookmarkReducer from './slices/BookmarkSlice';
 
 const rootReducer = combineReducers({
-  cart: cartReducer,
+  bookmark: bookmarkReducer,
 });
 
 export default rootReducer;

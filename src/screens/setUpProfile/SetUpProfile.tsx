@@ -8,7 +8,7 @@ import { styles } from './Styles';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { SetUpProfileStackParams } from '../../typings/route';
-import { launchImageLibrary } from 'react-native-image-picker';
+import { openImagePicker } from '../../components/ImagePicker';
 
 const SetUpProfile = () => {
   const navigation =
@@ -61,36 +61,12 @@ const SetUpProfile = () => {
       newErrors.gender = '*Gender is required';
     }
     setErrors(newErrors);
-
-    // Check if any errors exist before proceeding
     const hasErrors = Object.values(newErrors).some(error => error !== '');
     if (!hasErrors) {
-      // If there are no errors, navigate to the next screen
       navigation.navigate('CreatePin');
     }
   };
 
-  const openImagePicker = () => {
-    const options = {
-      mediaType: 'photo',
-      includeBase64: false,
-      maxHeight: 2000,
-      maxWidth: 2000,
-    };
-
-    launchImageLibrary(options, handleResponse);
-  };
-
-  const handleResponse = response => {
-    if (response.didCancel) {
-      console.log('User cancelled image picker');
-    } else if (response.error) {
-      console.log('Image picker error: ', response.error);
-    } else {
-      let imageUri = response.uri || response.assets?.[0]?.uri;
-      setSelectedImage(imageUri);
-    }
-  };
   return (
     <ScrollView style={styles.container}>
       <View style={styles.headcontainer}>
@@ -112,7 +88,9 @@ const SetUpProfile = () => {
             />
           )}
         </View>
-        <TouchableOpacity style={styles.editIcon} onPress={openImagePicker}>
+        <TouchableOpacity
+          style={styles.editIcon}
+          onPress={() => openImagePicker(setSelectedImage)}>
           <Icon name="pencil" size={20} color="#fff" />
         </TouchableOpacity>
       </View>

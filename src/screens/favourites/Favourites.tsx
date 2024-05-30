@@ -4,11 +4,8 @@ import CustomIcon from '../../components/Icon/Icon';
 import IMAGES from '../../assets';
 import { useState } from 'react';
 import Modal from 'react-native-modal';
-import { HomeStackParams, RootStackParams } from '../../typings/route';
-import {
-  NativeStackNavigationProp,
-  NativeStackScreenProps,
-} from '@react-navigation/native-stack';
+import { HomeStackParams } from '../../typings/route';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
 
 type DoctorItemProps = {
@@ -134,6 +131,7 @@ const DoctorItem: React.FC<DoctorItemProps> = ({
               name="heart-fill"
               size={19}
               color={isHeartPressed ? 'grey' : '#3577FE'}
+              style={{ right: 20 }}
             />
           </TouchableOpacity>
         </View>
@@ -195,6 +193,7 @@ const DoctorItem: React.FC<DoctorItemProps> = ({
                     name="heart-fill"
                     size={19}
                     color={'#3577FE'}
+                    style={{ right: 20 }}
                   />
                 </View>
                 <View style={{ flexDirection: 'row' }}>

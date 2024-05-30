@@ -1,42 +1,47 @@
 import { NavigatorScreenParams } from '@react-navigation/native';
 import { DoctorCardType } from '../screens/topDoctors/TopDoctors';
+import { ArticleNewsParamsTypes } from '../seeds/Articles';
 
-type RootStackParams = {
-  TabStack: NavigatorScreenParams<HomeStackParams>;
-  RegistrationStack: NavigatorScreenParams<RegistrationStackParams>;
-  SetUpProfileStack: NavigatorScreenParams<SetUpProfileStackParams>;
+export type RootStackParams = {
+  Splash: undefined;
+  OnBoarding: undefined;
+  Login: undefined;
+  RegisterStack: NavigatorScreenParams<RegisterStackParams>;
   HomeStack: NavigatorScreenParams<HomeStackParams>;
+  TabStack: NavigatorScreenParams<BottomTabParams>;
 };
 
-type RegistrationStackParams = {
-  splash: undefined;
-  FirstPage: undefined;
-  signUp: undefined;
-  signIn: undefined;
-};
-
-type SetUpProfileStackParams = {
+type RegisterStackParams = {
+  Register: undefined;
   SetUpProfile: undefined;
   CreatePin: undefined;
   SetFingerPrint: undefined;
 };
 
 type HomeStackParams = {
-  TabStack: NavigatorScreenParams<BottomTabParams>;
-  notification: undefined;
-  favouriteDoctor: undefined;
-  topDoctor: undefined;
-  search: undefined;
+  Home: undefined;
+  Notification: undefined;
+  FavouriteDoctor: undefined;
+  TopDoctor: undefined;
+  Search: undefined;
   UserDetails?: { doctorData: DoctorCardType };
 };
 
 export type BottomTabParams = {
-  Home: undefined;
+  HomeStack: NavigatorScreenParams<HomeStackParams>;
   Appointment: undefined;
   History: undefined;
-  Articles: undefined;
-  Profile: undefined;
+  ArticleStack: NavigatorScreenParams<ArticlesStackParams>;
+  Profile: NavigatorScreenParams<ProfileStackParams>;
 };
 
+export type ArticlesStackParams = {
+  Article: undefined;
+  AllArticles: undefined;
+  ArtcleDetails?: { article: ArticleNewsParamsTypes };
+  Bookmarks: undefined;
+};
 
-
+export type ProfileStackParams = {
+  DashBoard: undefined;
+};

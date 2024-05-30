@@ -3,15 +3,13 @@ import {Text, TextInput, TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import React, { useRef } from 'react';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { SetUpProfileStackParams } from '../../typings/route';
+import { RegisterStackParams } from '../../typings/route';
 import { styles } from './Styles';
 import { useNavigation } from '@react-navigation/native';
 
 const CreatePin = () => {
   const navigation =
-    useNavigation<
-      NativeStackNavigationProp<SetUpProfileStackParams, 'CreatePin'>
-    >();
+    useNavigation<NativeStackNavigationProp<RegisterStackParams>>();
 
   const inputRef1 = useRef(null);
   const inputRef2 = useRef(null);
@@ -34,7 +32,7 @@ const CreatePin = () => {
           size={30}
           color="black"
           style={styles.arrow}
-          onPress={() => navigation.navigate('SetUpProfile')}
+          onPress={() => navigation.goBack()}
         />
         <Text style={styles.headtext}>Create New PIN</Text>
       </View>

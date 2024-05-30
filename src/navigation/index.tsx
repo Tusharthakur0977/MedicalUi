@@ -1,11 +1,11 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import {
+  ArticlesStackParams,
   BottomTabParams,
   HomeStackParams,
-  RegistrationStackParams,
+  RegisterStackParams,
   RootStackParams,
-  SetUpProfileStackParams,
 } from '../typings/route';
 import Splash from '../screens/splash/Splash';
 import FirstPage from '../screens/firstPage/FirstPage';
@@ -20,47 +20,66 @@ import CustomIcon from '../components/Icon/Icon';
 import Notifications from '../screens/notifications/Notifications';
 import Favourites from '../screens/favourites/Favourites';
 import TopDoctors from '../screens/topDoctors/TopDoctors';
-import profile from '../screens/profile/profile';
-import Profile from '../screens/profile/profile';
+import Profile from '../screens/profile/Profile';
+import UserDetails from '../screens/UserDetails/UserDetails';
+import Article from '../screens/articles/Article';
+import AllArticles from '../screens/allArticles/AllArticles';
+import ArticleDetails from '../screens/articleDetails/ArticleDetails';
+import Bookmarks from '../screens/bookmarks/Bookmarks';
 
 const Stack = createNativeStackNavigator<RootStackParams>();
-const RegistrationStack = createNativeStackNavigator<RegistrationStackParams>();
-const SetUpProfileStack = createNativeStackNavigator<SetUpProfileStackParams>();
+const RegistrationStack = createNativeStackNavigator<RegisterStackParams>();
 const HomeStack = createNativeStackNavigator<HomeStackParams>();
+const ArticleStack = createNativeStackNavigator<ArticlesStackParams>();
 const TabStack = createBottomTabNavigator<BottomTabParams>();
+
+function RootStackParam() {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Splash" component={Splash} />
+      <Stack.Screen name="OnBoarding" component={FirstPage} />
+      <Stack.Screen name="Login" component={SignIn} />
+      <Stack.Screen
+        name="RegisterStack"
+        component={RegistrationStackNavigator}
+      />
+      <Stack.Screen name="TabStack" component={TabbingStackNavigator} />
+    </Stack.Navigator>
+  );
+}
 
 function RegistrationStackNavigator() {
   return (
     <RegistrationStack.Navigator screenOptions={{ headerShown: false }}>
-      <RegistrationStack.Screen name="splash" component={Splash} />
-      <RegistrationStack.Screen name="FirstPage" component={FirstPage} />
-      <RegistrationStack.Screen name="signIn" component={SignIn} />
-      <RegistrationStack.Screen name="signUp" component={SignUp} />
-    </RegistrationStack.Navigator>
-  );
-}
-
-function SetUpProfileStackNavigator() {
-  return (
-    <SetUpProfileStack.Navigator screenOptions={{ headerShown: false }}>
-      <SetUpProfileStack.Screen name="SetUpProfile" component={SetUpProfile} />
-      <SetUpProfileStack.Screen name="CreatePin" component={CreatePin} />
-      <SetUpProfileStack.Screen
+      <RegistrationStack.Screen name="Register" component={SignUp} />
+      <RegistrationStack.Screen name="SetUpProfile" component={SetUpProfile} />
+      <RegistrationStack.Screen name="CreatePin" component={CreatePin} />
+      <RegistrationStack.Screen
         name="SetFingerPrint"
         component={SetFingerPrint}
       />
-    </SetUpProfileStack.Navigator>
+    </RegistrationStack.Navigator>
   );
 }
-
-function HomeStackNavigator() {
+function HomeStackNavigators() {
   return (
     <HomeStack.Navigator screenOptions={{ headerShown: false }}>
-      <HomeStack.Screen name="TabStack" component={TabbingStackNavigator} />
-      <HomeStack.Screen name="notification" component={Notifications} />
-      <HomeStack.Screen name="favouriteDoctor" component={Favourites} />
-      <HomeStack.Screen name="topDoctor" component={TopDoctors} />
+      <HomeStack.Screen name="Home" component={Home} />
+      <HomeStack.Screen name="FavouriteDoctor" component={Favourites} />
+      <HomeStack.Screen name="Notification" component={Notifications} />
+      <HomeStack.Screen name="TopDoctor" component={TopDoctors} />
+      <HomeStack.Screen name="UserDetails" component={UserDetails} />
     </HomeStack.Navigator>
+  );
+}
+function ArticleStackNavigators() {
+  return (
+    <ArticleStack.Navigator screenOptions={{ headerShown: false }}>
+      <ArticleStack.Screen name="Article" component={Article} />
+      <ArticleStack.Screen name="AllArticles" component={AllArticles} />
+      <ArticleStack.Screen name="ArtcleDetails" component={ArticleDetails} />
+      <ArticleStack.Screen name="Bookmarks" component={Bookmarks} />
+    </ArticleStack.Navigator>
   );
 }
 
@@ -72,12 +91,12 @@ function TabbingStackNavigator() {
         tabBarStyle: {
           borderTopWidth: 0,
           paddingHorizontal: 30,
-          paddingBottom: 10,
+          gap: 6,
         },
       }}>
       <TabStack.Screen
-        name="Home"
-        component={Home}
+        name="HomeStack"
+        component={HomeStackNavigators}
         options={{
           tabBarIcon: ({ focused }) => (
             <CustomIcon
@@ -87,6 +106,7 @@ function TabbingStackNavigator() {
               type={'Foundation'}
             />
           ),
+          tabBarLabel: 'Home',
         }}
       />
       <TabStack.Screen
@@ -118,8 +138,8 @@ function TabbingStackNavigator() {
         }}
       />
       <TabStack.Screen
-        name="Articles"
-        component={TopDoctors}
+        name="ArticleStack"
+        component={ArticleStackNavigators}
         options={{
           tabBarIcon: ({ focused }) => (
             <CustomIcon
@@ -129,6 +149,7 @@ function TabbingStackNavigator() {
               type={'MaterialCommunityIcons'}
             />
           ),
+          tabBarLabel: 'Articles',
         }}
       />
       <TabStack.Screen
@@ -153,18 +174,18 @@ function Routing() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: true }}>
       <Stack.Screen
-        name="RegistrationStack"
+        name="Splash"
+        component={RootStackParam}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="RegisterStack"
         component={RegistrationStackNavigator}
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name="SetUpProfileStack"
-        component={SetUpProfileStackNavigator}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
         name="HomeStack"
-        component={HomeStackNavigator}
+        component={HomeStackNavigators}
         options={{ headerShown: false }}
       />
       <Stack.Screen

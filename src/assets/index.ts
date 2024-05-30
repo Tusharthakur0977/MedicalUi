@@ -4,7 +4,7 @@ const IMAGES = {
   firstPage: require('../assets/Firstpage.png'),
   splashLogo: require('../assets/image-removebg-preview.png'),
   signupInLogo: require('../assets/Second.png'),
-  profile : require('./profile.jpg'),
+  profile: require('./profile.jpg'),
   home: require('./Home.png'),
   general: require('./General.png'),
   dentist: require('./Dentist.png'),
@@ -23,6 +23,12 @@ const IMAGES = {
   jenny: require('./image.png'),
   raul: require('./image1.png'),
   elijah: require('./image2.png'),
-  randy: require('./image3.png')
+  randy: require('./image3.png'),
+  articletrend1: require('./articleTrend1.jpg'),
+  covidTrend2: require('./CovidTrend2.jpg'),
+  articleNews1: require('./ArticleNews1.jpg'),
+  An2: require('./ArticleNews2.jpg'),
+  articlen2: require('./ArticleNews3.jpg'),
+  articlenews3: require('./ArticleNews4.jpg'),
 };
 export default IMAGES;

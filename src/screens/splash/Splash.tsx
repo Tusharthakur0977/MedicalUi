@@ -6,35 +6,33 @@ import React, { useEffect, useRef } from 'react';
 import { Animated, Easing, Image, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import IMAGES from '../../assets';
-import { RegistrationStackParams } from '../../typings/route';
+import { RootStackParams } from '../../typings/route';
 import { styles } from './Styles';
 
 const Splash = () => {
   const navigation =
-    useNavigation<
-      NativeStackNavigationProp<RegistrationStackParams, 'splash'>
-    >();
+    useNavigation<NativeStackNavigationProp<RootStackParams, 'Splash'>>();
 
-  const rotateValue = useRef(new Animated.Value(0)).current;
+    const rotateValue = useRef(new Animated.Value(0)).current;
 
-  const startRotating = () => {
-    rotateValue.setValue(0);
-    Animated.loop(
-      Animated.timing(rotateValue, {
-        toValue: 1,
-        duration: 2000,
-        easing: Easing.linear,
-        useNativeDriver: true,
-      }),
-    ).start();
-  };
+    const startRotating = () => {
+      rotateValue.setValue(0);
+      Animated.loop(
+        Animated.timing(rotateValue, {
+          toValue: 1,
+          duration: 2000,
+          easing: Easing.linear,
+          useNativeDriver: true,
+        }),
+      ).start();
+    };
 
-  useEffect(() => {
-    startRotating();
-    setTimeout(() => {
-      navigation.replace('FirstPage');
-    }, 2000);
-  }, []);
+    useEffect(() => {
+      startRotating();
+      setTimeout(() => {
+        navigation.replace('OnBoarding');
+      }, 2000);
+    }, []);
 
   const spin = rotateValue.interpolate({
     inputRange: [0, 1],

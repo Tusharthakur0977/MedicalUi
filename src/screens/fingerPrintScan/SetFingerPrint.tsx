@@ -14,25 +14,19 @@ import IMAGES from '../../assets';
 import { styles } from './Styles';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import {
-  HomeStackParams,
-  RootStackParams,
-  SetUpProfileStackParams,
-} from '../../typings/route';
+import { BottomTabParams } from '../../typings/route';
 
 const SetFingerPrint = () => {
   const [modalVisible, setModalVisible] = useState(false);
 
-  const navigation = useNavigation<
-    NativeStackNavigationProp<RootStackParams> &
-      NativeStackNavigationProp<HomeStackParams>
-  >();
+  const navigation =
+    useNavigation<NativeStackNavigationProp<BottomTabParams>>();
 
   useEffect(() => {
     if (modalVisible) {
       const timer = setTimeout(() => {
         setModalVisible(false);
-        navigation.navigate('HomeStack', { screen: 'home' });
+        navigation.navigate('TabStack', { screen: 'HomeStack' });
       }, 5000);
       return () => clearTimeout(timer);
     }

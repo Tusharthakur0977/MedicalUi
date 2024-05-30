@@ -6,13 +6,13 @@ import CustomIcon from '../../components/Icon/Icon'
 import { styles } from './Style'
 import Slick from 'react-native-slick'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { HomeStackParams } from '../../typings/route';
+import { BottomTabParams } from '../../typings/route';
 import { useNavigation } from '@react-navigation/native';
 import { Data, data } from '../../seeds/Home';
 
 const Home = () => {
   const navigation =
-    useNavigation<NativeStackNavigationProp<HomeStackParams, 'home'>>();
+    useNavigation<NativeStackNavigationProp<BottomTabParams>>();
 
   return (
     <ScrollView
@@ -33,12 +33,16 @@ const Home = () => {
           <CustomIcon
             type="Feather"
             name="bell"
-            onPress={() => navigation.navigate('notification')}
+            onPress={() =>
+              navigation.navigate('HomeStack', { screen: 'Notification' })
+            }
           />
           <CustomIcon
             type="Feather"
             name="heart"
-            onPress={() => navigation.navigate('favouriteDoctor')}
+            onPress={() =>
+              navigation.navigate('HomeStack', { screen: 'FavouriteDoctor' })
+            }
           />
         </View>
       </View>
@@ -144,7 +148,10 @@ const Home = () => {
         }}>
         <View style={styles.topDoctors}>
           <Text style={styles.topdocTitle}>Top Doctors</Text>
-          <TouchableOpacity onPress={() => navigation.navigate('topDoctor')}>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate('HomeStack', { screen: 'TopDoctor' })
+            }>
             <Text style={styles.seeAll}>See All</Text>
           </TouchableOpacity>
         </View>

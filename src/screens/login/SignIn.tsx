@@ -3,7 +3,7 @@ import {Image, Text, TouchableOpacity, View} from 'react-native';
 import React, {useState} from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RegistrationStackParams, RootStackParams } from '../../typings/route';
+import { RootStackParams } from '../../typings/route';
 import IMAGES from '../../assets';
 import { styles } from './Styles';
 import CustomInput from '../../components/CustomInput/CustomInput';
@@ -36,10 +36,8 @@ const CustomCheckbox: React.FC<CustomCheckboxProps> = ({
 const SignIn = () => {
   const [isChecked, setChecked] = useState(false);
 
-  const navigation = useNavigation<
-    NativeStackNavigationProp<RootStackParams> &
-      NativeStackNavigationProp<RegistrationStackParams>
-  >();
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParams>>();
 
   const toggleCheck = () => {
     setChecked(!isChecked);
@@ -70,8 +68,7 @@ const SignIn = () => {
     }
     const hasErrors = Object.values(newErrors).some(error => error !== '');
     if (!hasErrors) {
-      // If there are no errors, navigate to the next screen
-      navigation.navigate('HomeStack', { screen: 'home' });
+      navigation.navigate('TabStack', { screen: 'HomeStack' });
     }
     setErrors(newErrors);
   };
@@ -157,7 +154,10 @@ const SignIn = () => {
 
       <View style={styles.footerTextContainer}>
         <Text style={styles.footerText}>Don't have an account? </Text>
-        <TouchableOpacity onPress={() => navigation.navigate('signUp')}>
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate('RegisterStack', { screen: 'Register' })
+          }>
           <Text style={styles.signinText}>Sign up</Text>
         </TouchableOpacity>
       </View>

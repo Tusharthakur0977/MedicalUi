@@ -1,0 +1,38 @@
+{
+  "project_info": {
+    "project_number": "564824950671",
+    "project_id": "newsapp-8c536",
+    "storage_bucket": "newsapp-8c536.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:564824950671:android:933ab2f5e1d6cb215aadfa",
+        "android_client_info": {
+          "package_name": "com.Medical.MedicalNews"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "AIzaSyB80Y7QbzAdHI8MDWROKWIHo3Jig7K9EIE.com.Medical.MedicalNews",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.Medical.MedicalNews",
+            "certificate_hash": "7b004fbc5af5895b5af033989b97b37e518684d8"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB80Y7QbzAdHI8MDWROKWIHo3Jig7K9EIE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
