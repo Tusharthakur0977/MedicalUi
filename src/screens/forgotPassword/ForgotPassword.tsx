@@ -157,7 +157,9 @@ const ForgotPassword = () => {
             Alert.alert('Please select a method to reset your password.');
           }
         }}>
-        <Text style={{ fontSize: 17, fontWeight: 'bold' }}>Continue</Text>
+        <Text style={{ fontSize: 17, fontWeight: 'bold', color: 'white' }}>
+          Continue
+        </Text>
       </TouchableOpacity>
     </View>
   );

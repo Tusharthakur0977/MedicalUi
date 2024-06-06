@@ -1,5 +1,14 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import React, { useState } from 'react';
+import {
+  ActivityIndicator,
+  Alert,
+  Image,
+  Modal,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import React, { useEffect, useState } from 'react';
 import CustomIcon from '../../components/Icon/Icon';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -32,6 +41,9 @@ const CustomCheckbox: React.FC<CustomCheckboxProps> = ({
 };
 const NewPassword = () => {
   const [isChecked, setChecked] = useState(false);
+  const [isShowPassword, setIsShowPassword] = useState(true);
+  const [isShowConfirmPassword, setIsShowConfirmPassword] = useState(true);
+  const [modalVisible, setModalVisible] = useState(false);
 
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParams>>();
@@ -39,6 +51,15 @@ const NewPassword = () => {
   const toggleCheck = () => {
     setChecked(!isChecked);
   };
+  useEffect(() => {
+    if (modalVisible) {
+      const timer = setTimeout(() => {
+        setModalVisible(false);
+        navigation.navigate('TabStack', { screen: 'HomeStack' });
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [modalVisible, navigation]);
   return (
     <View
       style={{
@@ -70,7 +91,7 @@ const NewPassword = () => {
         contentContainerStyle={{ alignItems: 'center', gap: 50 }}>
         <Image
           source={IMAGES.createPassword}
-          style={{ maxHeight: 300, maxWidth: 300 }}
+          style={{ maxHeight: 300, maxWidth: '100%' }}
         />
         <View style={{ gap: 30, alignItems: 'center', width: '100%' }}>
           <Text
@@ -90,11 +111,11 @@ const NewPassword = () => {
             leftIconColor="#212121"
             leftIconSize={20}
             isRightIcon={true}
-            rightIconName="eye-slash"
+            rightIconName={isShowPassword ? 'eye-slash' : 'eye'}
             rightIconType="FontAwesome5"
             rightIconColor="#212121"
             rightIconSize={20}
-            inputStyle={{ flex: 1, color: '#212121', fontSize: 20 }}
+            inputStyle={{ flex: 1, color: '#212121', fontSize: 18 }}
             mainContStyles={{
               borderColor: '#ddd',
               backgroundColor: '#FAFAFA',
@@ -104,7 +125,8 @@ const NewPassword = () => {
               borderRadius: 20,
               gap: 10,
             }}
-            secureTextEntry={true}
+            rightIconOnPress={() => setIsShowPassword(!isShowPassword)}
+            secureTextEntry={isShowPassword}
           />
           <CustomInput
             isLeftIcon={true}
@@ -113,11 +135,11 @@ const NewPassword = () => {
             leftIconColor="#212121"
             leftIconSize={20}
             isRightIcon={true}
-            rightIconName="eye-slash"
+            rightIconName={isShowConfirmPassword ? 'eye-slash' : 'eye'}
             rightIconType="FontAwesome5"
             rightIconColor="#212121"
             rightIconSize={20}
-            inputStyle={{ flex: 1, color: '#212121' }}
+            inputStyle={{ flex: 1, color: '#212121', fontSize: 18 }}
             mainContStyles={{
               borderColor: '#ddd',
               backgroundColor: '#FAFAFA',
@@ -127,6 +149,10 @@ const NewPassword = () => {
               borderRadius: 20,
               gap: 10,
             }}
+            rightIconOnPress={() =>
+              setIsShowConfirmPassword(!isShowConfirmPassword)
+            }
+            secureTextEntry={isShowConfirmPassword}
           />
           <View>
             <CustomCheckbox
@@ -143,11 +169,43 @@ const NewPassword = () => {
               alignItems: 'center',
               borderRadius: 32,
               shadowColor: '#D8E5FF',
-            }}>
-            <Text style={{ fontSize: 17, fontWeight: 'bold' }}>Continue</Text>
+            }}
+            onPress={() => setModalVisible(!modalVisible)}>
+            <Text style={{ fontSize: 17, fontWeight: 'bold', color: 'white' }}>
+              Continue
+            </Text>
           </TouchableOpacity>
         </View>
       </KeyboardAwareScrollView>
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert('Modal has been closed.');
+          setModalVisible(!modalVisible);
+        }}>
+        <View style={styles.overlay}>
+          <View style={styles.centeredView}>
+            <View style={styles.modalView}>
+              <Image
+                style={styles.image}
+                source={IMAGES.resetPasswordConsgrats}
+              />
+              <Text style={styles.modalText}>Conratulations!</Text>
+              <Text style={styles.bodytext}>
+                Your account is ready to use. You will be redirected to Home
+                page in a few seconds.
+              </Text>
+              <ActivityIndicator
+                size={80}
+                color={'#5677fc'}
+                style={styles.loader}
+              />
+            </View>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };
@@ -191,5 +249,50 @@ const styles = StyleSheet.create({
   checkboxLabel: {
     fontSize: 16,
     color: 'black',
+  },
+  overlay: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.7)', // Semi-transparent background
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 22,
+    marginHorizontal: 20,
+  },
+  modalView: {
+    margin: 15,
+    backgroundColor: 'white',
+    borderRadius: 50,
+    paddingHorizontal: 35,
+    paddingBottom: 20,
+    alignItems: 'center',
+  },
+  textStyle: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: 'center',
+    color: '#5677fc',
+    fontSize: 25,
+    fontWeight: '700',
+  },
+  bodytext: {
+    color: 'black',
+    fontSize: 15,
+    textAlign: 'center',
+  },
+  loader: {
+    marginTop: 20,
+  },
+  image: {
+    height: 250,
+    width: 200,
   },
 });

@@ -14,13 +14,13 @@ import IMAGES from '../../assets';
 import { styles } from './Styles';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { BottomTabParams } from '../../typings/route';
+import { RootStackParams } from '../../typings/route';
 
 const SetFingerPrint = () => {
   const [modalVisible, setModalVisible] = useState(false);
 
   const navigation =
-    useNavigation<NativeStackNavigationProp<BottomTabParams>>();
+    useNavigation<NativeStackNavigationProp<RootStackParams>>();
 
   useEffect(() => {
     if (modalVisible) {
