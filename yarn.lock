@@ -6027,10 +6027,10 @@ react-native-vector-icons@^10.0.3:
     prop-types "^15.7.2"
     yargs "^16.1.1"
 
-react-native@*, react-native@>=0.20.0, react-native@>=0.35, react-native@>=0.42.0, react-native@>=0.48.4, react-native@>=0.60, react-native@>=0.63.3, react-native@>=0.65.0, react-native@>=0.69, react-native@>=0.8.0, react-native@0.73.6:
-  version "0.73.6"
-  resolved "https://registry.npmjs.org/react-native/-/react-native-0.73.6.tgz"
-  integrity sha512-oqmZe8D2/VolIzSPZw+oUd6j/bEmeRHwsLn1xLA5wllEYsZ5zNuMsDus235ONOnCRwexqof/J3aztyQswSmiaA==
+react-native@*, react-native@^0.73.6, react-native@>=0.20.0, react-native@>=0.35, react-native@>=0.42.0, react-native@>=0.48.4, react-native@>=0.60, react-native@>=0.63.3, react-native@>=0.65.0, react-native@>=0.69, react-native@>=0.8.0:
+  version "0.73.8"
+  resolved "https://registry.npmjs.org/react-native/-/react-native-0.73.8.tgz"
+  integrity sha512-EPURbV36NW5H0eVTmePtwuMJfxFvFokEgbaw61pCqdeOLeaGVxsU54RK8RIXpehzPuTGpQVVxTUKbvaM7F+TTw==
   dependencies:
     "@jest/create-cache-key-function" "^29.6.3"
     "@react-native-community/cli" "12.3.6"
