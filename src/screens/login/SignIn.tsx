@@ -131,7 +131,12 @@ const SignIn = () => {
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text style={styles.buttonText}>Sign in</Text>
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity
+        onPress={() =>
+          navigation.navigate('ResetPassWordStack', {
+            screen: 'ForgotPassword',
+          })
+        }>
         <Text style={styles.forgot}>Forgot the password ?</Text>
       </TouchableOpacity>
       <Text style={styles.orText}>or continue with</Text>

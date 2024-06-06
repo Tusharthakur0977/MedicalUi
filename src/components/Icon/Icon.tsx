@@ -11,6 +11,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Octicons from 'react-native-vector-icons/Octicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Fontisto from 'react-native-vector-icons/Fontisto';
 
 const iconSet = {
   FontAwesome,
@@ -24,6 +25,7 @@ const iconSet = {
   Ionicons,
   Octicons,
   MaterialCommunityIcons,
+  Fontisto,
 };
 
 export type IconTypes = keyof typeof iconSet;

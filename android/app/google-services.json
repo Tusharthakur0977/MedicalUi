@@ -9,17 +9,21 @@
       "client_info": {
         "mobilesdk_app_id": "1:564824950671:android:933ab2f5e1d6cb215aadfa",
         "android_client_info": {
-          "package_name": "com.Medical.MedicalNews"
+          "package_name": "com.medicalui"
         }
       },
       "oauth_client": [
         {
-          "client_id": "AIzaSyB80Y7QbzAdHI8MDWROKWIHo3Jig7K9EIE.com.Medical.MedicalNews",
+          "client_id": "564824950671-oben75r5ghkunr2nj31124pq767vkrif.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.Medical.MedicalNews",
-            "certificate_hash": "7b004fbc5af5895b5af033989b97b37e518684d8"
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
           }
+        },
+        {
+          "client_id": "564824950671-ad3q0repambe1a080sa0bq9n9i418gt4.apps.googleusercontent.com",
+          "client_type": 3
         }
       ],
       "api_key": [
@@ -29,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "564824950671-ad3q0repambe1a080sa0bq9n9i418gt4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

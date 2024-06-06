@@ -1,6 +1,7 @@
 import { NavigatorScreenParams } from '@react-navigation/native';
 import { DoctorCardType } from '../screens/topDoctors/TopDoctors';
 import { ArticleNewsParamsTypes } from '../seeds/Articles';
+import { data } from '../screens/forgotPassword/ForgotPassword';
 
 export type RootStackParams = {
   Splash: undefined;
@@ -9,6 +10,7 @@ export type RootStackParams = {
   RegisterStack: NavigatorScreenParams<RegisterStackParams>;
   HomeStack: NavigatorScreenParams<HomeStackParams>;
   TabStack: NavigatorScreenParams<BottomTabParams>;
+  ResetPassWordStack: NavigatorScreenParams<ResetPasswordStackParams>;
 };
 
 type RegisterStackParams = {
@@ -16,6 +18,11 @@ type RegisterStackParams = {
   SetUpProfile: undefined;
   CreatePin: undefined;
   SetFingerPrint: undefined;
+};
+type ResetPasswordStackParams = {
+  ForgotPassword: undefined;
+  OTPVerification?: { details: data };
+  CreatePassword: undefined;
 };
 
 type HomeStackParams = {

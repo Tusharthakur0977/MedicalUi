@@ -5,6 +5,7 @@ import {
   BottomTabParams,
   HomeStackParams,
   RegisterStackParams,
+  ResetPasswordStackParams,
   RootStackParams,
 } from '../typings/route';
 import Splash from '../screens/splash/Splash';
@@ -26,12 +27,16 @@ import Article from '../screens/articles/Article';
 import AllArticles from '../screens/allArticles/AllArticles';
 import ArticleDetails from '../screens/articleDetails/ArticleDetails';
 import Bookmarks from '../screens/bookmarks/Bookmarks';
+import ForgotPassword from '../screens/forgotPassword/ForgotPassword';
+import OtpVerification from '../screens/otpVerification/OtpVerification';
+import NewPassword from '../screens/newPassword/NewPassword';
 
 const Stack = createNativeStackNavigator<RootStackParams>();
 const RegistrationStack = createNativeStackNavigator<RegisterStackParams>();
 const HomeStack = createNativeStackNavigator<HomeStackParams>();
 const ArticleStack = createNativeStackNavigator<ArticlesStackParams>();
 const TabStack = createBottomTabNavigator<BottomTabParams>();
+const ResetPassStack = createNativeStackNavigator<ResetPasswordStackParams>();
 
 function RootStackParam() {
   return (
@@ -80,6 +85,18 @@ function ArticleStackNavigators() {
       <ArticleStack.Screen name="ArtcleDetails" component={ArticleDetails} />
       <ArticleStack.Screen name="Bookmarks" component={Bookmarks} />
     </ArticleStack.Navigator>
+  );
+}
+function ResetPasswordStackNavigator() {
+  return (
+    <ResetPassStack.Navigator screenOptions={{ headerShown: false }}>
+      <ResetPassStack.Screen name="ForgotPassword" component={ForgotPassword} />
+      <ResetPassStack.Screen
+        name="OTPVerification"
+        component={OtpVerification}
+      />
+      <ResetPassStack.Screen name="CreatePassword" component={NewPassword} />
+    </ResetPassStack.Navigator>
   );
 }
 
@@ -181,6 +198,11 @@ function Routing() {
       <Stack.Screen
         name="RegisterStack"
         component={RegistrationStackNavigator}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="ResetPassWordStack"
+        component={ResetPasswordStackNavigator}
         options={{ headerShown: false }}
       />
       <Stack.Screen

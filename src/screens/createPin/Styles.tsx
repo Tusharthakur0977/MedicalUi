@@ -1,6 +1,5 @@
 /* eslint-disable prettier/prettier */
-import {StyleSheet} from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
+import { StyleSheet } from 'react-native';
 const COLORS = {
   white: '#ffffff',
   black: '#000',

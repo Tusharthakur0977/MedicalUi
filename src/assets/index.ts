@@ -30,5 +30,7 @@ const IMAGES = {
   An2: require('./ArticleNews2.jpg'),
   articlen2: require('./ArticleNews3.jpg'),
   articlenews3: require('./ArticleNews4.jpg'),
+  resetPassworlImg: require('./resetPassword.png'),
+  createPassword: require('./createPassword.png'),
 };
 export default IMAGES;

@@ -1,3 +1,4 @@
+import { getPathFromState } from '@react-navigation/native';
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
@@ -5,10 +6,9 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFF',
     paddingVertical: 20,
+    gap: 20,
   },
-  arrow: {
-    paddingRight: 20,
-  },
+
   errorText: {
     color: 'red',
     alignSelf: 'flex-start',
@@ -18,8 +18,8 @@ export const styles = StyleSheet.create({
   headcontainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginLeft: 20,
-    marginTop: -7,
+    paddingHorizontal: 20,
+    gap: 20,
   },
   headtext: {
     color: 'black',
@@ -32,7 +32,6 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     position: 'relative',
-    marginBottom: 20,
   },
   profileImageContainer: {
     width: 155,
@@ -64,13 +63,12 @@ export const styles = StyleSheet.create({
   },
   input: {
     width: '90%',
-    height: 65,
+    height: 60,
     paddingVertical: 5,
     paddingHorizontal: 10,
     borderColor: '#DDD',
     borderRadius: 20,
     backgroundColor: '#efeff0',
-    gap: 10,
   },
   button: {
     backgroundColor: '#5677fc',
@@ -79,13 +77,12 @@ export const styles = StyleSheet.create({
     borderRadius: 30,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 20,
+    marginTop: 30,
     marginHorizontal: 20,
+    position: 'relative',
   },
   buttonText: {
     color: '#FFF',
     fontSize: 18,
   },
-  lefticon: {},
-  iconcont: {},
 });
